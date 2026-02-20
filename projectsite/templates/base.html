@@ -179,31 +179,31 @@
                 </div>
                 <ul class="nav">
                     <li class="nav-item">
-                        <a href="/">
+                        <a href="{% url 'home' %}">
                             <i class="la la-dashboard"></i>
                             <p>Dashboard</p>
-                            <span class="badge badge-count">5</span>
+                            <span class="badge badge-count">{{ org_count }}</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#">
+                        <a href="{% url 'college-list' %}">
                             <i class="la la-table"></i>
-                            <p>Components</p>
-                            <span class="badge badge-count">14</span>
+                            <p>Colleges</p>
+                            <span class="badge badge-count">{{ college_count }}</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#">
+                        <a href="{% url 'program-list' %}">
                             <i class="la la-keyboard-o"></i>
-                            <p>Forms</p>
-                            <span class="badge badge-count">50</span>
+                            <p>Programs</p>
+                            <span class="badge badge-count">{{ program_count }}</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#">
+                        <a href="{% url 'organization-list' %}">
                             <i class="la la-th"></i>
-                            <p>Tables</p>
-                            <span class="badge badge-count">6</span>
+                            <p>Organizations</p>
+                            <span class="badge badge-count">{{ org_count }}</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -213,11 +213,11 @@
                             <span class="badge badge-success">3</span>
                         </a>
                     </li>
-                    <li class="nav-item active">
-                        <a href="#">
+                    <li class="nav-item">
+                        <a href="{% url 'student-list' %}">
                             <i class="la la-font"></i>
-                            <p>Typography</p>
-                            <span class="badge badge-danger">25</span>
+                            <p>Students</p>
+                            <span class="badge badge-danger">{{ student_count }}</span>
                         </a>
                     </li>
                     <li class="nav-item">
