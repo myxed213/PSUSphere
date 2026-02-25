@@ -17,7 +17,6 @@
                             <tr>
                                 <th scope="col">Program Name</th>
                                 <th scope="col">College</th>
-                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -25,13 +24,10 @@
                             <tr>
                                 <td>{{ object.prog_name }}</td>
                                 <td>{{ object.college }}</td>
-                                <td>
-                                    <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                                </td>
                             </tr>
                             {% empty %}
                             <tr>
-                                <td colspan="3" class="text-center">No programs found.</td>
+                                <td colspan="2" class="text-center">No programs found.</td>
                             </tr>
                             {% endfor %}
                         </tbody>
