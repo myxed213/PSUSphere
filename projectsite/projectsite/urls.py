@@ -1,16 +1,18 @@
 from django.contrib import admin
 from django.urls import path
+from studentorg import views
 from studentorg.views import (
-    HomePageView, OrganizationListView, OrganizationCreateView, OrganizationUpdateView, OrganizationDeleteView,
+    HomePageView, OrganizationList, OrganizationCreateView, OrganizationUpdateView, OrganizationDeleteView,
     StudentListView, StudentCreateView, StudentUpdateView, StudentDeleteView,
     CollegeListView, CollegeCreateView, CollegeUpdateView, CollegeDeleteView,
-    ProgramListView, ProgramCreateView, ProgramUpdateView, ProgramDeleteView
+    ProgramListView, ProgramCreateView, ProgramUpdateView, ProgramDeleteView,
+    OrgMemberListView, OrgMemberCreateView, OrgMemberUpdateView, OrgMemberDeleteView
 )
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', HomePageView.as_view(), name='home'),
-    path('organization_list/', OrganizationListView.as_view(), name='organization-list'),
+    path('', views.HomePageView.as_view(), name='home'),
+    path('organization_list', OrganizationList.as_view(), name='organization-list'),
     path('organization_list/add/', OrganizationCreateView.as_view(), name='organization-add'),
     path('organization_list/edit/<int:pk>/', OrganizationUpdateView.as_view(), name='organization-update'),
     path('organization_list/delete/<int:pk>/', OrganizationDeleteView.as_view(), name='organization-delete'),
@@ -26,4 +28,8 @@ urlpatterns = [
     path('program_list/add/', ProgramCreateView.as_view(), name='program-add'),
     path('program_list/edit/<int:pk>/', ProgramUpdateView.as_view(), name='program-update'),
     path('program_list/delete/<int:pk>/', ProgramDeleteView.as_view(), name='program-delete'),
+    path('member_list/', OrgMemberListView.as_view(), name='member-list'),
+    path('member_list/add/', OrgMemberCreateView.as_view(), name='member-add'),
+    path('member_list/edit/<int:pk>/', OrgMemberUpdateView.as_view(), name='member-update'),
+    path('member_list/delete/<int:pk>/', OrgMemberDeleteView.as_view(), name='member-delete'),
 ]

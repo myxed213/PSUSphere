@@ -182,48 +182,36 @@
                         <a href="{% url 'home' %}">
                             <i class="la la-dashboard"></i>
                             <p>Dashboard</p>
-                            <span class="badge badge-count">{{ org_count }}</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{% url 'college-list' %}">
-                            <i class="la la-table"></i>
-                            <p>Colleges</p>
-                            <span class="badge badge-count">{{ college_count }}</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{% url 'program-list' %}">
-                            <i class="la la-keyboard-o"></i>
-                            <p>Programs</p>
-                            <span class="badge badge-count">{{ program_count }}</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="{% url 'organization-list' %}">
                             <i class="la la-th"></i>
-                            <p>Organizations</p>
-                            <span class="badge badge-count">{{ org_count }}</span>
+                            <p>Organization</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#">
-                            <i class="la la-bell"></i>
-                            <p>Notifications</p>
-                            <span class="badge badge-success">3</span>
+                        <a href="{% url 'member-list' %}">
+                            <i class="la la-check-circle"></i>
+                            <p>Org. Members</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="{% url 'student-list' %}">
                             <i class="la la-font"></i>
-                            <p>Students</p>
-                            <span class="badge badge-danger">{{ student_count }}</span>
+                            <p>Student</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#">
-                            <i class="la la-fonticons"></i>
-                            <p>Icons</p>
+                        <a href="{% url 'college-list' %}">
+                            <i class="la la-bank"></i>
+                            <p>College</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'program-list' %}">
+                            <i class="la la-keyboard-o"></i>
+                            <p>Program</p>
                         </a>
                     </li>
                 </ul>
