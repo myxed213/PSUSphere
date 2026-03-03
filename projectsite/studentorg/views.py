@@ -36,7 +36,13 @@ class OrganizationList(ListView):
     template_name = 'org_list.html'
     context_object_name = 'organization'
     paginate_by = 5
-    ordering = ["college__college_name", "name"]
+
+    def get_ordering(self):
+        allowed = ["name", "college__college_name"]
+        sort_by = self.request.GET.get("sort_by")
+        if sort_by in allowed:
+            return sort_by
+        return "name"
 
     def get_queryset(self):
         query = self.request.GET.get('q')
@@ -67,6 +73,13 @@ class StudentListView(ListView):
     context_object_name = 'student'
     paginate_by = 5
 
+    def get_ordering(self):
+        allowed = ["lastname", "firstname", "student_id"]
+        sort_by = self.request.GET.get("sort_by")
+        if sort_by in allowed:
+            return sort_by
+        return "lastname"
+
     def get_queryset(self):
         query = self.request.GET.get('q')
         if query:
@@ -95,6 +108,13 @@ class CollegeListView(ListView):
     template_name = 'college_list.html'
     context_object_name = 'college'
     paginate_by = 5
+
+    def get_ordering(self):
+        allowed = ["college_name"]
+        sort_by = self.request.GET.get("sort_by")
+        if sort_by in allowed:
+            return sort_by
+        return "college_name"
 
     def get_queryset(self):
         query = self.request.GET.get('q')
@@ -160,7 +180,13 @@ class OrgMemberListView(ListView):
     template_name = 'member_list.html'
     context_object_name = 'member'
     paginate_by = 5
-    ordering = ["student__lastname", "date_joined"]
+
+    def get_ordering(self):
+        allowed = ["student__lastname", "organization__name", "date_joined"]
+        sort_by = self.request.GET.get("sort_by")
+        if sort_by in allowed:
+            return sort_by
+        return "student__lastname"
 
     def get_queryset(self):
         query = self.request.GET.get('q')

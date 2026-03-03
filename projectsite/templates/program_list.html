@@ -13,9 +13,16 @@
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-6">
-                                <form class="navbar-left navbar-form nav-search mr-md-3"
-                                    action="{% url 'program-list' %}">
-                                    <input type="text" placeholder="Search ..." class="form-control" name="q">
+                                <form method="get" action="{% url 'program-list' %}">
+                                    <div class="input-group">
+                                        <input type="text" name="q" placeholder="Search ..." class="form-control"
+                                            value="{{ request.GET.q }}">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">
+                                                <i class="la la-search search-icon"></i>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </form>
                             </div>
                             <div class="col-md-6 text-right">
@@ -29,8 +36,10 @@
                             </div>
                             <div class="col-auto">
                                 <select class="form-control form-control-sm" id="smallSelect" name="sort_by">
-                                    <option value="prog_name" {% if request.GET.sort_by == "prog_name" %}selected{% endif %}>Program Name</option>
-<option value="college__college_name" {% if request.GET.sort_by == "college__college_name" %}selected{% endif %}>College
+                                    <option value="prog_name" {% if request.GET.sort_by=="prog_name" %}selected{% endif
+                                        %}>Program Name</option>
+                                    <option value="college__college_name" {% if
+                                        request.GET.sort_by=="college__college_name" %}selected{% endif %}>College
                                     </option>
                                 </select>
                             </div>

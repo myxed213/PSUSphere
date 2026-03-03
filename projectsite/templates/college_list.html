@@ -10,17 +10,40 @@
                         <div class="card-category">Manage college entities.</div>
                     </div>
                     <br />
-                    <div class="col-md-12 row">
-                        <div class="col-md-6">
-                            <form class="navbar-left navbar-form nav-search mr-md-3" action="{% url 'college-list' %}">
-                                <input type="text" placeholder="Search ..." class="form-control" name="q">
-                            </form>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="pull-right">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <form method="get" action="{% url 'college-list' %}">
+                                    <div class="input-group">
+                                        <input type="text" name="q" placeholder="Search ..." class="form-control"
+                                            value="{{ request.GET.q }}">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">
+                                                <i class="la la-search search-icon"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-6 text-right">
                                 <a href="{% url 'college-add' %}" class="btn btn-success btn-rounded">Add College</a>
                             </div>
                         </div>
+                        <br />
+                        <form method="get" class="row g-2 align-items-center">
+                            <div class="col-auto">
+                                <label for="smallSelect" class="col-form-label">Sort by</label>
+                            </div>
+                            <div class="col-auto">
+                                <select class="form-control form-control-sm" id="smallSelect" name="sort_by">
+                                    <option value="college_name" {% if request.GET.sort_by=="college_name" %}selected{%
+                                        endif %}>College Name</option>
+                                </select>
+                            </div>
+                            <div class="col-auto">
+                                <button type="submit" class="btn btn-primary btn-sm btn-rounded">Sort</button>
+                            </div>
+                        </form>
                     </div>
                     <div class="card-body">
                         <table class="table table-striped mt-3">
