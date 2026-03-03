@@ -10,42 +10,36 @@
                         <div class="card-category">Manage academic programs.</div>
                     </div>
                     <br />
-                    <div class="col-md-12 row">
-                        <div class="col-md-6">
-                            <form class="navbar-left navbar-form nav-search mr-md-3" action="{% url 'program-list' %}">
-                                <div class="input-group">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <form class="navbar-left navbar-form nav-search mr-md-3"
+                                    action="{% url 'program-list' %}">
                                     <input type="text" placeholder="Search ..." class="form-control" name="q">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">
-                                            <i class="la la-search search-icon"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </form>
-                            <br />
-                            <form method="get" class="row g-2 align-items-center">
-                                <div class="col-auto">
-                                    <label for="smallSelect" class="col-form-label">Sort by</label>
-                                </div>
-                                <div class="col-auto">
-                                    <select class="form-control form-control-sm" id="smallSelect" name="sort_by">
-                                        <option value="prog_name" {% if request.GET.sort_by=="prog_name" %}selected{%
-                                            endif %}>Program Name</option>
-                                        <option value="college__college_name" {% if
-                                            request.GET.sort_by=="college__college_name" %}selected{% endif %}>College
-                                        </option>
-                                    </select>
-                                </div>
-                                <div class="col-auto">
-                                    <button type="submit" class="btn btn-primary btn-sm btn-rounded">Sort</button>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="pull-right">
+                                </form>
+                            </div>
+                            <div class="col-md-6 text-right">
                                 <a href="{% url 'program-add' %}" class="btn btn-success btn-rounded">Add Program</a>
                             </div>
                         </div>
+                        <br />
+                        <form method="get" class="row g-2 align-items-center">
+                            <div class="col-auto">
+                                <label for="smallSelect" class="col-form-label">Sort by</label>
+                            </div>
+                            <div class="col-auto">
+                                <select class="form-control form-control-sm" id="smallSelect" name="sort_by">
+                                    <option value="prog_name" {% if request.GET.sort_by=="prog_name" %}selected{% endif
+                                        %}>Program Name</option>
+                                    <option value="college__college_name" {% if
+                                        request.GET.sort_by=="college__college_name" %}selected{% endif %}>College
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-auto">
+                                <button type="submit" class="btn btn-primary btn-sm btn-rounded">Sort</button>
+                            </div>
+                        </form>
                     </div>
                     <div class="card-body">
                         <table class="table table-striped mt-3">
