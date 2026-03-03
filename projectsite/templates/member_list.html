@@ -35,7 +35,7 @@
                                 <label for="smallSelect" class="col-form-label">Sort by</label>
                             </div>
                             <div class="col-auto">
-                                <select class="form-control form-control-sm" id="smallSelect" name="sort_by">
+                                <select class="form-control some-rounded-input-style" id="smallSelect" name="sort_by">
                                     <option value="student__lastname" {% if request.GET.sort_by=="student__lastname"
                                         %}selected{% endif %}>Student Name</option>
                                     <option value="organization__name" {% if request.GET.sort_by=="organization__name"
