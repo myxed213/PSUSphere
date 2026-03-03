@@ -36,12 +36,9 @@
                             </div>
                             <div class="col-auto">
                                 <select class="form-control form-control-sm" id="smallSelect" name="sort_by">
-                                    <option value="lastname" {% if request.GET.sort_by=="lastname" %}selected{% endif
-                                        %}>Last Name</option>
-                                    <option value="firstname" {% if request.GET.sort_by=="firstname" %}selected{% endif
-                                        %}>First Name</option>
-                                    <option value="student_id" {% if request.GET.sort_by=="student_id" %}selected{%
-                                        endif %}>Student ID</option>
+                                    <option value="lastname" {% if request.GET.sort_by == "lastname" %}selected{% endif %}>Last Name</option>
+                                    <option value="firstname" {% if request.GET.sort_by == "firstname" %}selected{% endif %}>First Name</option>
+                                    <option value="student_id" {% if request.GET.sort_by == "student_id" %}selected{% endif %}>Student ID</option>
                                 </select>
                             </div>
                             <div class="col-auto">
