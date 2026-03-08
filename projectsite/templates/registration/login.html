@@ -1,0 +1,170 @@
+{% load static %}
+{% load socialaccount %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Login - PSUSphere</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+        name='viewport' />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/ready.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <link rel="stylesheet" href="https://maxst.icons8.com/foundation-icons/1.1/line-awesome/css/line-awesome.min.css">
+    <style>
+        body {
+            background-color: #f4f5f8;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(0, 0, 0, 0.4);
+            border: none;
+        }
+
+        .login-card .card-header {
+            background-color: #1d253b;
+            color: #fff;
+            text-align: center;
+            border-radius: 10px 10px 0 0;
+            padding: 20px;
+        }
+
+        .login-card .card-body {
+            padding: 30px;
+        }
+
+        .login-card .form-control {
+            border-radius: 30px;
+            padding: 10px 20px;
+        }
+
+        .btn-login {
+            border-radius: 30px;
+            padding: 10px 20px;
+            width: 100%;
+            font-weight: bold;
+        }
+
+        .social-login {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .social-btn {
+            border-radius: 30px;
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            transition: opacity 0.3s;
+            text-decoration: none !important;
+            color: #fff !important;
+        }
+
+        .social-btn:hover {
+            opacity: 0.9;
+        }
+
+        .btn-google {
+            background-color: #4285F4;
+        }
+
+        .btn-github {
+            background-color: #333;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 20px 0;
+            color: #888;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .divider:not(:empty)::before {
+            margin-right: .5em;
+        }
+
+        .divider:not(:empty)::after {
+            margin-left: .5em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card login-card">
+        <div class="card-header">
+            <h3 class="mb-0">PSUSphere Login</h3>
+        </div>
+        <div class="card-body">
+            {% if form.errors %}
+            <div class="alert alert-danger">
+                Your username and password didn't match. Please try again.
+            </div>
+            {% endif %}
+
+            {% if next %}
+            {% if user.is_authenticated %}
+            <div class="alert alert-warning">
+                Your account doesn't have access to this page. To proceed, please login with an account that has access.
+            </div>
+            {% else %}
+            <div class="alert alert-info">
+                Please login to see this page.
+            </div>
+            {% endif %}
+            {% endif %}
+
+            <form method="post" action="{% url 'app-login' %}">
+                {% csrf_token %}
+                {% if next %}
+                <input type="hidden" name="next" value="{{ next }}">
+                {% endif %}
+                <div class="form-group pb-3">
+                    <label for="id_username">Username</label>
+                    <input type="text" name="username" class="form-control" autofocus required id="id_username"
+                        placeholder="Enter Username">
+                </div>
+                <div class="form-group pb-4">
+                    <label for="id_password">Password</label>
+                    <input type="password" name="password" class="form-control" required id="id_password"
+                        placeholder="Enter Password">
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-login">Login</button>
+
+                <div class="divider">OR</div>
+
+                <div class="social-login">
+                    <a href="{% provider_login_url 'google' %}" class="social-btn btn-google">
+                        <i class="la la-google mr-2"></i> Login with Google
+                    </a>
+                    <a href="{% provider_login_url 'github' %}" class="social-btn btn-github">
+                        <i class="la la-github mr-2"></i> Login with GitHub
+                    </a>
+                </div>
+                <input type="hidden" name="next" value="{{ next|default:'' }}" />
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

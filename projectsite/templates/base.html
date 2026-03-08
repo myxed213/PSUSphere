@@ -113,14 +113,14 @@
                         <li class="nav-item dropdown">
                             <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"
                                 aria-expanded="false"> <img src="{% static 'img/profile.jpg' %}" alt="user-img"
-                                    width="36" class="img-circle"><span>Hizrian</span></span> </a>
+                                    width="36" class="img-circle"><span>{{ user.username }}</span></span> </a>
                             <ul class="dropdown-menu dropdown-user">
                                 <li>
                                     <div class="user-box">
                                         <div class="u-img"><img src="{% static 'img/profile.jpg' %}" alt="user"></div>
                                         <div class="u-text">
-                                            <h4>Hizrian</h4>
-                                            <p class="text-muted">hello@themekita.com</p><a href="#"
+                                            <h4>{{ user.username }}</h4>
+                                            <p class="text-muted">{{ user.email }}</p><a href="#"
                                                 class="btn btn-rounded btn-danger btn-sm">View Profile</a>
                                         </div>
                                     </div>
@@ -132,7 +132,8 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#"><i class="ti-settings"></i> Account Setting</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#"><i class="fa fa-power-off"></i> Logout</a>
+                                <a class="dropdown-item" href="{% url 'app-logout' %}"><i class="fa fa-power-off"></i>
+                                    Logout</a>
                             </ul>
                             <!-- /.dropdown-user -->
                         </li>
@@ -149,8 +150,14 @@
                     <div class="info">
                         <a class="" data-toggle="collapse" href="#collapseExample" aria-expanded="true">
                             <span>
-                                Hizrian
-                                <span class="user-level">Administrator</span>
+                                {{ user.username }}
+                                <span class="user-level">
+                                    {% if user.is_superuser %}
+                                    Administrator
+                                    {% else %}
+                                    User
+                                    {% endif %}
+                                </span>
                                 <span class="caret"></span>
                             </span>
                         </a>
@@ -214,6 +221,14 @@
                             <p>Program</p>
                         </a>
                     </li>
+                    {% if user.is_superuser %}
+                    <li class="nav-item">
+                        <a href="/admin/" target="_blank">
+                            <i class="la la-cog"></i>
+                            <p>Admin Panel</p>
+                        </a>
+                    </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
