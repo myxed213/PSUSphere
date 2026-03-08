@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from studentorg import views
 from studentorg.views import (
     HomePageView, OrganizationList, OrganizationCreateView, OrganizationUpdateView, OrganizationDeleteView,
@@ -10,6 +10,7 @@ from studentorg.views import (
 )
 
 urlpatterns = [
+    path('admin/logout/', views.admin_logout_view),
     path('admin/', admin.site.urls),
     path('', views.HomePageView.as_view(), name='home'),
     path('organization_list', OrganizationList.as_view(), name='organization-list'),
@@ -32,4 +33,7 @@ urlpatterns = [
     path('member_list/add/', OrgMemberCreateView.as_view(), name='member-add'),
     path('member_list/edit/<int:pk>/', OrgMemberUpdateView.as_view(), name='member-update'),
     path('member_list/delete/<int:pk>/', OrgMemberDeleteView.as_view(), name='member-delete'),
+    path('login/', views.LoginFormView.as_view(), name='app-login'),
+    path('logout/', views.app_logout_view, name='app-logout'),
+    path('accounts/', include('allauth.urls')),
 ]

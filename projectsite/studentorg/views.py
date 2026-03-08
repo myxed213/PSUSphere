@@ -1,11 +1,48 @@
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import AuthenticationForm
+from django.shortcuts import redirect, render
+from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.urls import reverse_lazy
 from django.db.models import Q
 from django.utils import timezone
 from studentorg.models import Organization, Student, College, Program, OrgMember
 from .forms import OrganizationForm, StudentForm, CollegeForm, ProgramForm, OrgMemberForm
+
+class LoginFormView(FormView):
+    form_class = AuthenticationForm
+    template_name = 'registration/login.html'
+    success_url = reverse_lazy('home')
+
+    def get_success_url(self):
+        next_url = self.request.GET.get('next') or self.request.POST.get('next')
+        if next_url:
+            return next_url
+        return super().get_success_url()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['next'] = self.request.GET.get('next')
+        return context
+
+    def form_valid(self, form):
+        username = form.cleaned_data.get('username')
+        password = form.cleaned_data.get('password')
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(self.request, user)
+            return super(LoginFormView, self).form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+def app_logout_view(request):
+    logout(request)
+    return redirect('app-login')
+
+def admin_logout_view(request):
+    logout(request)
+    return redirect('admin:login')
 
 class HomePageView(LoginRequiredMixin, ListView):
     model = Organization
