@@ -28,6 +28,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['Janrycedie1.pythonanywhere.com', '127.0.0.1', 'localhost']
 
+# Security settings for PythonAnywhere HTTPS
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
+
 
 # Application definition
 
@@ -145,3 +149,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGOUT_REDIRECT_URL = 'app-login'
 LOGIN_URL = 'app-login'
+LOGIN_REDIRECT_URL = 'home'
